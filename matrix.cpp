@@ -1,15 +1,15 @@
 #include "matrix.hpp"
 
-Matrix::Matrix(matrix& m) : m(m) {}
+Matrix::Matrix(Matrix& matrix2) : m(matrix2.m) {}
 
-matrix Matrix::add(matrix& m2) {}
+Matrix Matrix::add(Matrix& m2) {}
 
-matrix Matrix::sub(matrix& m2) {}
+Matrix Matrix::sub(Matrix& m2) {}
 
-matrix Matrix::mult(matrix& m2) {}
+Matrix Matrix::mult(Matrix& m2) {}
 
-matrix Matrix::compConj() {}
+Matrix Matrix::compConj() {}
 
-matrix Matrix::trans() {}
+Matrix Matrix::trans() {}
 
-matrix Matrix::dagger() {}
+Matrix Matrix::dagger() {}

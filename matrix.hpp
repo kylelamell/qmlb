@@ -10,15 +10,15 @@ class Matrix {
 public:
   matrix m;
 
-  Matrix(matrix& m);
+  Matrix(Matrix& m);
 
-  matrix add(matrix& m2);
-  matrix sub(matrix& m2);
-  matrix mult(matrix& m2);
+  Matrix add(Matrix& m2);
+  Matrix sub(Matrix& m2);
+  Matrix mult(Matrix& m2);
 
-  matrix compConj();
-  matrix trans();
-  matrix dagger();
+  Matrix compConj();
+  Matrix trans();
+  Matrix dagger();
 };
 
 #endif
