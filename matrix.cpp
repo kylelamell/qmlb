@@ -12,4 +12,4 @@ matrix Matrix::compConj() {}
 
 matrix Matrix::trans() {}
 
-matrix Matrix::dag() {}
+matrix Matrix::dagger() {}

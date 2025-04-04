@@ -18,7 +18,7 @@ public:
 
   matrix compConj();
   matrix trans();
-  matrix dag();
+  matrix dagger();
 };
 
 #endif

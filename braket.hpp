@@ -12,21 +12,21 @@ protected:
 public:
   virtual ~BraKet() {};
   BraKetType getType();
-  virtual std::unique_ptr<BraKet> changeType() const = 0;
+  virtual std::unique_ptr<BraKet> changeType() = 0;
 };
 
 class Bra : public BraKet {
 public:
-  matrix state;
-  Bra(matrix& s);
-  std::unique_ptr<BraKet> changeType() const override;
+  Matrix state;
+  Bra(Matrix& s);
+  std::unique_ptr<BraKet> changeType() override;
 };
 
 class Ket : public BraKet {
 public:
-  matrix state;
-  Ket(matrix& s);
-  std::unique_ptr<BraKet> changeType() const override;
+  Matrix state;
+  Ket(Matrix& s);
+  std::unique_ptr<BraKet> changeType() override;
 };
 
 #endif
