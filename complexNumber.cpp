@@ -18,6 +18,6 @@ CNum CNum::mult(CNum& cn2) {
   return CNum((real * cn2.real) - (comp * comp), (real * cn2.comp) + (comp * cn2.real));
 }
 
-string CNum::print() {
+std::string CNum::print() {
   return "[" + std::to_string(real) + "+" + std::to_string(comp) + "i]";
 }
