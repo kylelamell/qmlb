@@ -18,7 +18,7 @@ public:
   CNum compConj() const;
   double magnitude() const;
 
-  std::string print();
+  std::string print() const;
 };
 
 #endif

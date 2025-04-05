@@ -15,15 +15,15 @@ public:
 
   Matrix(matrix& m);
 
-  Matrix add(Matrix& m2);
-  Matrix sub(Matrix& m2);
-  Matrix mult(Matrix& m2);
+  Matrix add(const Matrix& m2) const;
+  Matrix sub(const Matrix& m2) const;
+  Matrix mult(const Matrix& m2) const;
 
-  Matrix transpose();
-  Matrix compConj();
-  Matrix hermConj();
+  Matrix transpose() const;
+  Matrix compConj() const;
+  Matrix hermConj() const;
 
-  void print();
+  void print() const;
 };
 
 #endif

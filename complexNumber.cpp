@@ -25,7 +25,7 @@ double CNum::magnitude() const {
   return std::sqrt(real * real + comp * comp);
 }
 
-std::string CNum::print() {
+std::string CNum::print() const {
   if (comp >= 0) {
     return "[" + std::to_string(real) + "+" + std::to_string(comp) + "i]";
   }
