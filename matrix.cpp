@@ -2,18 +2,16 @@
 #include <stdexcept>
 #include <iostream>
 
-using std::vector, std::runtime_error, std::cout, std::endl;
-
 Matrix::Matrix() {}
 
 Matrix::Matrix(matrix& mat2) : mat(mat2) {}
 
 Matrix Matrix::add(Matrix& m2) {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
-    throw runtime_error("Matrix::add: Matrix dimensions do not match.");
+    throw std::runtime_error("Matrix::add: Matrix dimensions do not match.");
   }
   
-  matrix result(mat.size(), vector<CNum>(mat[0].size()));
+  matrix result(mat.size(), rowVector(mat[0].size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
@@ -26,10 +24,10 @@ Matrix Matrix::add(Matrix& m2) {
 
 Matrix Matrix::sub(Matrix& m2) {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
-    throw runtime_error("Matrix->add: Matrix dimensions do not match.");
+    throw std::runtime_error("Matrix->add: Matrix dimensions do not match.");
   }
   
-  matrix result(mat.size(), vector<CNum>(mat[0].size()));
+  matrix result(mat.size(), rowVector(mat[0].size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
@@ -42,10 +40,10 @@ Matrix Matrix::sub(Matrix& m2) {
 
 Matrix Matrix::mult(Matrix& m2) {
   if (mat[0].size() != m2.mat.size()) {
-    throw runtime_error("Matrix->mult: Inner matrix dimentions do not match.");
+    throw std::runtime_error("Matrix->mult: Inner matrix dimentions do not match.");
   }
 
-  matrix result(mat.size(), vector<CNum>(m2.mat[0].size()));
+  matrix result(mat.size(), rowVector(m2.mat[0].size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < m2.mat[0].size(); j++) {
@@ -63,7 +61,7 @@ Matrix Matrix::mult(Matrix& m2) {
 Matrix Matrix::compConj() {
   matrix result = mat;
 
-  for (vector<CNum>& vec : result) {
+  for (rowVector& vec : result) {
     for (CNum& cn : vec) {
       cn = cn.compConj();
     }
@@ -73,7 +71,7 @@ Matrix Matrix::compConj() {
 }
 
 Matrix Matrix::transpose() {
-  matrix result(mat[0].size(), vector<CNum>(mat.size()));
+  matrix result(mat[0].size(), rowVector(mat.size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
@@ -91,8 +89,8 @@ Matrix Matrix::hermConj() {
 void Matrix::print() {
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[i].size(); j++) {
-      cout << mat[i][j].print() << " ";
+      std::cout << mat[i][j].print() << " ";
     }
-    cout << endl;
+    std::cout << std::endl;
   }
 }

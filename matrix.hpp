@@ -5,6 +5,7 @@
 #include <vector>
 
 typedef std::vector<std::vector<CNum>> matrix;
+typedef std::vector<CNum> rowVector;
 
 class Matrix {
 public:
