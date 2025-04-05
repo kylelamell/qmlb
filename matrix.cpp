@@ -75,7 +75,7 @@ Matrix Matrix::compConj() {
   return Matrix(result);
 }
 
-Matrix Matrix::trans() {
+Matrix Matrix::transpose() {
   matrix result(mat[0].size(), vector<CNum>(mat.size()));
 
   for (int i = 0; i < mat.size(); i++) {
@@ -88,7 +88,7 @@ Matrix Matrix::trans() {
 }
 
 Matrix Matrix::hermConj() {
-  return this->trans().compConj();
+  return this->transpose().compConj();
 }
 
 void Matrix::print() {

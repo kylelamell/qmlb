@@ -18,7 +18,7 @@ public:
   Matrix sub(Matrix& m2);
   Matrix mult(Matrix& m2);
 
-  Matrix trans();
+  Matrix transpose();
   Matrix compConj();
   Matrix hermConj();
 
