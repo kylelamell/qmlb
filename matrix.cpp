@@ -49,7 +49,9 @@ Matrix Matrix::mult(const Matrix& m2) const {
     for (int j = 0; j < m2.mat[0].size(); j++) {
       CNum sum;
       for (int k = 0; k < mat[0].size(); k++) {
-        sum = sum.add(mat[i][k].mult(m2.mat[k][j]));
+        const CNum& a = mat[i][k];
+        const CNum& b = m2.mat[k][j];
+        sum = sum.add(a.mult(b));
       }
       result[i][j] = sum;
     }
