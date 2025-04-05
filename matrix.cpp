@@ -64,15 +64,31 @@ Matrix Matrix::mult(Matrix& m2) {
 }
 
 Matrix Matrix::compConj() {
-  return Matrix();
+  matrix result = mat;
+
+  for (vector<CNum>& vec : result) {
+    for (CNum& cn : vec) {
+      cn.comp *= -1;
+    }
+  }
+
+  return Matrix(result);
 }
 
 Matrix Matrix::trans() {
-  return Matrix();
+  matrix result(mat[0].size(), vector<CNum>(mat.size()));
+
+  for (int i = 0; i < mat.size(); i++) {
+    for (int j = 0; j < mat[0].size(); j++) {
+      result[j][i] = mat[i][j];
+    }
+  }
+
+  return Matrix(result);
 }
 
-Matrix Matrix::dagger() {
-  return Matrix();
+Matrix Matrix::hermConj() {
+  return this->trans().compConj();
 }
 
 void Matrix::print() {

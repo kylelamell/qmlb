@@ -18,9 +18,9 @@ public:
   Matrix sub(Matrix& m2);
   Matrix mult(Matrix& m2);
 
-  Matrix compConj();
   Matrix trans();
-  Matrix dagger();
+  Matrix compConj();
+  Matrix hermConj();
 
   void print();
 };
