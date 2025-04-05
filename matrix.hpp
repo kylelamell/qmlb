@@ -8,9 +8,11 @@ typedef std::vector<std::vector<CNum>> matrix;
 
 class Matrix {
 public:
-  matrix m;
+  matrix mat;
 
-  Matrix(Matrix& m);
+  Matrix();
+
+  Matrix(matrix& m);
 
   Matrix add(Matrix& m2);
   Matrix sub(Matrix& m2);
@@ -19,6 +21,8 @@ public:
   Matrix compConj();
   Matrix trans();
   Matrix dagger();
+
+  void print();
 };
 
 #endif
