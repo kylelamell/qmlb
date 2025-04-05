@@ -52,9 +52,13 @@ Matrix Matrix::mult(const Matrix& m2) const {
     for (int j = 0; j < m2.mat[0].size(); j++) {
       CNum sum;
       for (int k = 0; k < mat[0].size(); k++) {
-        const CNum& a = mat[i][k];
-        const CNum& b = m2.mat[k][j];
-        sum = sum.add(a.mult(b));
+        // use constant references to single copies of mat[i][k] 
+        // and m2.mat[k][j] to hopefully reduce object copying
+        //const CNum& a = mat[i][k];
+        //const CNum& b = m2.mat[k][j];
+        //sum = sum.add(a.mult(b));
+
+        sum = sum.add(mat[i][k].mult(m2.mat[k][j]));
       }
       result[i][j] = sum;
     }
