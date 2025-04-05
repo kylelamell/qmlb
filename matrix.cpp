@@ -14,7 +14,7 @@ Matrix Matrix::add(Matrix& m2) {
     throw runtime_error("Matrix::add: Matrix dimensions do not match.");
   }
   
-  vector<vector<CNum>> result(mat.size(), vector<CNum>(mat[0].size()));
+  matrix result(mat.size(), vector<CNum>(mat[0].size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
@@ -31,7 +31,7 @@ Matrix Matrix::sub(Matrix& m2) {
     throw runtime_error("Matrix->add: Matrix dimensions do not match.");
   }
   
-  vector<vector<CNum>> result(mat.size(), vector<CNum>(mat[0].size()));
+  matrix result(mat.size(), vector<CNum>(mat[0].size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
