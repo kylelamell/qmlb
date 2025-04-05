@@ -1,5 +1,7 @@
 #include "complexNumber.hpp"
 
+CNum::CNum() : real(0), comp(0) {};
+
 CNum::CNum(int r, int c) : real(r), comp(c) {};
 
 CNum CNum::add(CNum& cn2) {

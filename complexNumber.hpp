@@ -6,6 +6,7 @@ public:
   int real;
   int comp;
 
+  CNum();
   CNum(int r, int c);
 
   CNum add(CNum& cn2);
