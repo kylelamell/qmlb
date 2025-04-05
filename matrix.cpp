@@ -1,5 +1,4 @@
 #include "matrix.hpp"
-
 #include <string>
 #include <stdexcept>
 #include <iostream>
