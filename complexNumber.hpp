@@ -1,6 +1,8 @@
 #ifndef COMPLEX_NUMBERS_H
 #define COMPLEX_NUMBER_H
 
+#include <string>
+
 class CNum {
 public:
   int real;
@@ -12,6 +14,8 @@ public:
   CNum add(CNum& cn2);
   CNum sub(CNum& cn2);
   CNum mult(CNum& cn2);
+
+  std::string print();
 };
 
 #endif
