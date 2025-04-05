@@ -16,6 +16,7 @@ public:
   CNum mult(const CNum& cn2) const;
 
   CNum compConj() const;
+  double magnitude() const;
 
   std::string print();
 };

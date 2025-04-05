@@ -1,6 +1,5 @@
 #include "complexNumber.hpp"
-
-using std::string;
+#include <cmath>
 
 CNum::CNum() : real(0), comp(0) {};
 
@@ -20,6 +19,10 @@ CNum CNum::mult(const CNum& cn2) const {
 
 CNum CNum::compConj() const {
   return CNum(real, -comp);
+}
+
+double CNum::magnitude() const {
+  return std::sqrt(real * real + comp * comp);
 }
 
 std::string CNum::print() {
