@@ -9,7 +9,7 @@ Matrix::Matrix(matrix& mat2) : mat(mat2) {}
 
 Matrix Matrix::add(const Matrix& m2) const {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
-    throw std::runtime_error("Matrix::add: Matrix dimensions do not match.");
+    throw std::runtime_error("Matrix->add: Matrix dimensions do not match.");
   }
   
   matrix result(mat.size(), rowVector(mat[0].size()));
@@ -25,7 +25,7 @@ Matrix Matrix::add(const Matrix& m2) const {
 
 Matrix Matrix::sub(const Matrix& m2) const {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
-    throw std::runtime_error("Matrix->add: Matrix dimensions do not match.");
+    throw std::runtime_error("Matrix->sub: Matrix dimensions do not match.");
   }
   
   matrix result(mat.size(), rowVector(mat[0].size()));
