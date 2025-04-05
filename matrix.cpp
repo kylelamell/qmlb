@@ -62,10 +62,10 @@ Matrix Matrix::mult(Matrix& m2) {
 
 Matrix Matrix::compConj() {
   matrix result = mat;
-  
+
   for (vector<CNum>& vec : result) {
     for (CNum& cn : vec) {
-      cn.comp *= -1;
+      cn = cn.compConj();
     }
   }
 
