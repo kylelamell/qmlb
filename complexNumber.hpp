@@ -11,9 +11,11 @@ public:
   CNum();
   CNum(int r, int c);
 
-  CNum add(CNum& cn2);
-  CNum sub(CNum& cn2);
-  CNum mult(CNum& cn2);
+  CNum add(const CNum& cn2) const;
+  CNum sub(const CNum& cn2) const;
+  CNum mult(const CNum& cn2) const;
+
+  CNum compConj() const;
 
   std::string print();
 };
