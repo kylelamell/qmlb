@@ -39,8 +39,6 @@ Matrix Matrix::sub(const Matrix& m2) const {
   return Matrix(result);
 }
 
-// googled how to parallel this and this came up
-#pragma omp parallel for collapse(2)
 Matrix Matrix::mult(const Matrix& m2) const {
   if (mat[0].size() != m2.mat.size()) {
     throw std::runtime_error("Matrix->mult: Inner matrix dimentions do not match.");
@@ -48,6 +46,8 @@ Matrix Matrix::mult(const Matrix& m2) const {
 
   matrix result(mat.size(), rowVector(m2.mat[0].size()));
 
+  // googled how to parallel this and this came up
+  #pragma omp parallel for collapse(2)
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < m2.mat[0].size(); j++) {
       CNum sum;
