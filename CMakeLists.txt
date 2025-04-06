@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 set(qmlb_src
   src/braket.cpp
+  src/equation.cpp
   src/matrix.cpp
   src/complexNumber.cpp
 )
