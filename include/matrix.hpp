@@ -17,8 +17,10 @@ public:
 
   Matrix add(const Matrix& m2) const;
   Matrix subtract(const Matrix& m2) const;
+
   Matrix scalarMultiply(const CNum& cn2) const;
   Matrix matrixMultiply(const Matrix& m2) const;
+  
   Matrix tensorProduct(const Matrix& m2) const;
 
   Matrix transpose() const;
