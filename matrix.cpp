@@ -39,7 +39,19 @@ Matrix Matrix::subtract(const Matrix& m2) const {
   return Matrix(result);
 }
 
-Matrix Matrix::multiply(const Matrix& m2) const {
+Matrix Matrix::scalarMultiply(const CNum& cn2) const {
+  matrix result = mat;
+
+  for (rowVector& vec : result) {
+    for (CNum& cn : vec) {
+      cn = cn.multiply(cn2);
+    }
+  }
+
+  return result;
+}
+
+Matrix Matrix::matrixMultiply(const Matrix& m2) const {
   if (mat[0].size() != m2.mat.size()) {
     throw std::runtime_error("Matrix->mult: Inner matrix dimentions do not match.");
   }
@@ -68,7 +80,7 @@ Matrix Matrix::tensorProduct(const Matrix& m2) const {
   // loop over left matrix
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
-      // for ech element: loop over right matrix
+      // for each element: loop over right matrix
       for (int u = 0; u < m2.mat.size(); u++) {
         for (int v = 0; v < m2.mat[0].size(); v++) {
           result[(i * m2.mat.size()) + u][(j * m2.mat[0].size()) + v] = mat[i][j].multiply(m2.mat[u][v]);
