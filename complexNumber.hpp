@@ -12,10 +12,10 @@ public:
   CNum(int r, int c);
 
   CNum add(const CNum& cn2) const;
-  CNum sub(const CNum& cn2) const;
-  CNum mult(const CNum& cn2) const;
+  CNum subtract(const CNum& cn2) const;
+  CNum multiply(const CNum& cn2) const;
 
-  CNum compConj() const;
+  CNum complexConjugate() const;
   double magnitude() const;
 
   std::string print() const;

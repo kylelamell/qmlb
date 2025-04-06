@@ -16,12 +16,14 @@ public:
   Matrix(matrix& m);
 
   Matrix add(const Matrix& m2) const;
-  Matrix sub(const Matrix& m2) const;
-  Matrix mult(const Matrix& m2) const;
+  Matrix subtract(const Matrix& m2) const;
+  Matrix multiply(const Matrix& m2) const;
 
   Matrix transpose() const;
-  Matrix compConj() const;
-  Matrix hermConj() const;
+  Matrix complexConjugate() const;
+  Matrix hermitianConjugate() const;
+
+  Matrix tensorProduct() const;
 
   void print() const;
 };

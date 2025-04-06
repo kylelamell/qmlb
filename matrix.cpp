@@ -23,7 +23,7 @@ Matrix Matrix::add(const Matrix& m2) const {
   return Matrix(result);
 }
 
-Matrix Matrix::sub(const Matrix& m2) const {
+Matrix Matrix::subtract(const Matrix& m2) const {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
     throw std::runtime_error("Matrix->sub: Matrix dimensions do not match.");
   }
@@ -39,7 +39,7 @@ Matrix Matrix::sub(const Matrix& m2) const {
   return Matrix(result);
 }
 
-Matrix Matrix::mult(const Matrix& m2) const {
+Matrix Matrix::multiply(const Matrix& m2) const {
   if (mat[0].size() != m2.mat.size()) {
     throw std::runtime_error("Matrix->mult: Inner matrix dimentions do not match.");
   }
@@ -67,7 +67,7 @@ Matrix Matrix::mult(const Matrix& m2) const {
   return Matrix(result);
 }
 
-Matrix Matrix::compConj() const {
+Matrix Matrix::complexConjugate() const {
   matrix result = mat;
 
   for (rowVector& vec : result) {
@@ -91,8 +91,8 @@ Matrix Matrix::transpose() const {
   return Matrix(result);
 }
 
-Matrix Matrix::hermConj() const {
-  return this->transpose().compConj();
+Matrix Matrix::hermitianConjugate() const {
+  return this->transpose().complexConjugate();
 }
 
 void Matrix::print() const {
