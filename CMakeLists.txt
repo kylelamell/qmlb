@@ -31,15 +31,23 @@ install(DIRECTORY include/
 )
 
 install(EXPORT qmlb_config
-  FILE qmlbCOnfig.cmake
+  FILE qmlbConfig.cmake
   DESTINATION lib/cmake/qmlb
 )
+
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+add_subdirectory(external/googletest)
 
 enable_testing()
 file(GLOB test_sources test/*.cpp)
 foreach(test_source ${test_sources})
   get_filename_component(test_name ${test_source} NAME_WE)
   add_executable(${test_name} ${test_source})
-  target_link_libraries(${test_name} qmlb)
+  target_link_libraries(${test_name} qmlb gtest gtest_main)
+  target_include_directories(${test_name}
+    PRIVATE
+      ${PROJECT_SOURCE_DIR}/include
+      ${PROJECT_SOURCE_DIR}/external/googletest/googletest/include
+  )
   add_test(NAME ${test_name} COMMAND ${test_name})
 endforeach()
