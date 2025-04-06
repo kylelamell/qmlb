@@ -1,6 +1,3 @@
-# Ignore CMakeLists.txt
-CMakeLists.txt
-
 # Ignore main.cpp
 main.cpp
 
