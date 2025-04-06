@@ -52,12 +52,6 @@ Matrix Matrix::multiply(const Matrix& m2) const {
     for (int j = 0; j < m2.mat[0].size(); j++) {
       CNum sum;
       for (int k = 0; k < mat[0].size(); k++) {
-        // use constant references to single copies of mat[i][k] 
-        // and m2.mat[k][j] to hopefully reduce object copying
-        //const CNum& a = mat[i][k];
-        //const CNum& b = m2.mat[k][j];
-        //sum = sum.add(a.mult(b));
-
         sum = sum.add(mat[i][k].multiply(m2.mat[k][j]));
       }
       result[i][j] = sum;
@@ -65,6 +59,25 @@ Matrix Matrix::multiply(const Matrix& m2) const {
   }
 
   return Matrix(result);
+}
+
+#pragma omp parallel for collapse(4)
+Matrix Matrix::tensorProduct(const Matrix& m2) const {
+  matrix result(mat.size() * m2.mat.size(), rowVector(mat[0].size() * m2.mat[0].size()));
+
+  // loop over left matrix
+  for (int i = 0; i < mat.size(); i++) {
+    for (int j = 0; j < mat[0].size(); j++) {
+      // for ech element: loop over right matrix
+      for (int u = 0; u < m2.mat.size(); u++) {
+        for (int v = 0; v < m2.mat[0].size(); v++) {
+          result[(i * m2.mat.size()) + u][(j * m2.mat[0].size()) + v] = mat[i][j].multiply(m2.mat[u][v]);
+        }
+      }
+    }
+  }
+
+  return result;
 }
 
 Matrix Matrix::complexConjugate() const {

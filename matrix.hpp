@@ -18,12 +18,11 @@ public:
   Matrix add(const Matrix& m2) const;
   Matrix subtract(const Matrix& m2) const;
   Matrix multiply(const Matrix& m2) const;
+  Matrix tensorProduct(const Matrix& m2) const;
 
   Matrix transpose() const;
   Matrix complexConjugate() const;
   Matrix hermitianConjugate() const;
-
-  Matrix tensorProduct() const;
 
   void print() const;
 };
