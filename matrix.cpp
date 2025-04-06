@@ -32,7 +32,7 @@ Matrix Matrix::subtract(const Matrix& m2) const {
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
-      result[i][j] = mat[i][j].sub(m2.mat[i][j]);
+      result[i][j] = mat[i][j].subtract(m2.mat[i][j]);
     }
   }
 
@@ -58,7 +58,7 @@ Matrix Matrix::multiply(const Matrix& m2) const {
         //const CNum& b = m2.mat[k][j];
         //sum = sum.add(a.mult(b));
 
-        sum = sum.add(mat[i][k].mult(m2.mat[k][j]));
+        sum = sum.add(mat[i][k].multiply(m2.mat[k][j]));
       }
       result[i][j] = sum;
     }
@@ -72,7 +72,7 @@ Matrix Matrix::complexConjugate() const {
 
   for (rowVector& vec : result) {
     for (CNum& cn : vec) {
-      cn = cn.compConj();
+      cn = cn.complexConjugate();
     }
   }
 
