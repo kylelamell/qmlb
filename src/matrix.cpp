@@ -128,3 +128,35 @@ void Matrix::print() const {
     std::cout << std::endl;
   }
 }
+
+bool operator==(const Matrix& lhs, const Matrix& rhs) {
+  if (lhs.mat.size() != rhs.mat.size() || lhs.mat[0].size() != rhs.mat[0].size()) {
+    return false;
+  }
+
+  for (int i = 0; i < lhs.mat.size(); i++) {
+    for (int j = 0; j < lhs.mat[0].size(); j++) {
+      if (lhs.mat[i][j] != rhs.mat[i][j]) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+bool operator!=(const Matrix& lhs, const Matrix& rhs) {
+  if (lhs.mat.size() != rhs.mat.size() || lhs.mat[0].size() != rhs.mat[0].size()) {
+    return true;
+  }
+
+  for (int i = 0; i < lhs.mat.size(); i++) {
+    for (int j = 0; j < lhs.mat[0].size(); j++) {
+      if (lhs.mat[i][j] != rhs.mat[i][j]) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}

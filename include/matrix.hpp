@@ -4,8 +4,8 @@
 #include "complexNumber.hpp"
 #include <vector>
 
-typedef std::vector<std::vector<CNum>> matrix;
-typedef std::vector<CNum> rowVector;
+using matrix = std::vector<std::vector<CNum>>;
+using rowVector = std::vector<CNum>;
 
 class Matrix {
 public:
@@ -28,6 +28,9 @@ public:
   Matrix hermitianConjugate() const;
 
   void print() const;
+
+  friend bool operator==(const Matrix& lhs, const Matrix& rhs);
+  friend bool operator!=(const Matrix& lhs, const Matrix& rhs);
 };
 
 #endif
