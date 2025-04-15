@@ -1,7 +1,7 @@
 #include "matrix.hpp"
 #include <gtest/gtest.h>
 
-// Matrix add(const Matrix& m2) const;
+// Matrix add(const Matrix& m2) const
 TEST(MatrixTest, AddNormal) {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   matrix m2 = {{CNum(4,4), CNum(3,3)},{CNum(2,2), CNum(1,1)}};
@@ -20,7 +20,7 @@ TEST(MatrixTest, AddWrongDimension) {
   EXPECT_THROW(M1.add(M2), std::runtime_error);
 }
 
-// Matrix subtract(const Matrix& m2) const;
+// Matrix subtract(const Matrix& m2) const
 TEST(MatrixTest, SubtractNormal) {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   matrix m2 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
@@ -39,7 +39,7 @@ TEST(MatrixTest, SubtractWrongDimension) {
   EXPECT_THROW(M1.subtract(M2), std::runtime_error);
 }
 
-// Matrix scalarMultiply(const CNum& cn2) const;
+// Matrix scalarMultiply(const CNum& cn2) const
 TEST(MatrixTest, ScalarMultiplyZero) {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   matrix m2 = {{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}};
@@ -72,19 +72,25 @@ TEST(MatrixTest, ScalarMultiplyComplex) {
   EXPECT_EQ(M1.scalarMultiply(CNum(2,2)), Expected);
 }
 
-// Matrix matrixMultiply(const Matrix& m2) const;
+// Matrix matrixMultiply(const Matrix& m2) const
 
 
-// Matrix tensorProduct(const Matrix& m2) const;
+// Matrix tensorProduct(const Matrix& m2) const
 
 
-// Matrix complexConjugate() const;
+// Matrix complexConjugate() const
 
 
-// Matrix transpose() const;
+// Matrix transpose() const
 
 
-// Matrix hermitianConjugate() const;
+// Matrix hermitianConjugate() const
+
+
+// bool ==
+
+
+// bool !=
 
 
 int main(int argc, char **argv) {
