@@ -58,7 +58,6 @@ Matrix Matrix::matrixMultiply(const Matrix& m2) const {
 
   matrix result(mat.size(), rowVector(m2.mat[0].size()));
 
-  // googled how to parallel this and this came up
   #pragma omp parallel for collapse(2)
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < m2.mat[0].size(); j++) {
@@ -73,14 +72,14 @@ Matrix Matrix::matrixMultiply(const Matrix& m2) const {
   return Matrix(result);
 }
 
-#pragma omp parallel for collapse(4)
 Matrix Matrix::tensorProduct(const Matrix& m2) const {
   matrix result(mat.size() * m2.mat.size(), rowVector(mat[0].size() * m2.mat[0].size()));
 
   // loop over left matrix
+  #pragma omp parallel for collapse(4)
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
-      // for each element: loop over right matrix
+      // for each element in left matrix: loop over right matrix
       for (int u = 0; u < m2.mat.size(); u++) {
         for (int v = 0; v < m2.mat[0].size(); v++) {
           result[(i * m2.mat.size()) + u][(j * m2.mat[0].size()) + v] = mat[i][j].multiply(m2.mat[u][v]);
