@@ -39,7 +39,6 @@ TEST(MatrixTest, SubtractWrongDimension) {
   EXPECT_THROW(M1.subtract(M2), std::runtime_error);
 }
 
-
 // Matrix scalarMultiply(const CNum& cn2) const;
 TEST(MatrixTest, ScalarMultiplyZero) {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
@@ -52,7 +51,7 @@ TEST(MatrixTest, ScalarMultiplyZero) {
 TEST(MatrixTest, ScalarMultiplyReal) {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   Matrix M1(m1);
-  matrix m2 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
+  matrix m2 = {{CNum(2,1), CNum(4,2)},{CNum(6,3), CNum(8,4)}};
   Matrix M2(m2);
   EXPECT_EQ(M1.scalarMultiply(CNum(2,0)), M2);
 }
