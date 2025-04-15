@@ -24,9 +24,9 @@ TEST(MatrixTest, AddWrongDimension) {
 TEST(MatrixTest, SubtractNormal) {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   Matrix M1(m1);
-  matrix m2 = {{CNum(4,4), CNum(3,3)},{CNum(2,2), CNum(1,1)}};
+  matrix m2 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   Matrix M2(m2);
-  matrix m3 = {{CNum(5,5), CNum(5,5)},{CNum(5,5), CNum(5,5)}};
+  matrix m3 = {{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}};
   Matrix M3(m3);
   EXPECT_EQ(M1.subtract(M2), M3);
 }
@@ -51,7 +51,7 @@ TEST(MatrixTest, ScalarMultiplyZero) {
 TEST(MatrixTest, ScalarMultiplyReal) {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   Matrix M1(m1);
-  matrix m2 = {{CNum(2,1), CNum(4,2)},{CNum(6,3), CNum(8,4)}};
+  matrix m2 = {{CNum(2,2), CNum(4,4)},{CNum(6,6), CNum(8,8)}};
   Matrix M2(m2);
   EXPECT_EQ(M1.scalarMultiply(CNum(2,0)), M2);
 }
