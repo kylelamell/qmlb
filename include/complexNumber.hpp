@@ -19,6 +19,8 @@ public:
   double magnitude() const;
 
   std::string print() const;
+
+  friend bool operator==(const CNum& lhs, const CNum& rhs);
 };
 
 #endif

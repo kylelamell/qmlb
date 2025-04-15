@@ -32,3 +32,7 @@ std::string CNum::print() const {
 
   return "[" + std::to_string(real) + std::to_string(comp) + "i]";  
 }
+
+bool operator==(const CNum& lhs, const CNum& rhs) {
+  return ((lhs.real == rhs.real) && (lhs.comp == rhs.comp));
+}
