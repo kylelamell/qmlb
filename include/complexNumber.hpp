@@ -21,6 +21,7 @@ public:
   std::string print() const;
 
   friend bool operator==(const CNum& lhs, const CNum& rhs);
+  friend bool operator!=(const CNum& lhs, const CNum& rhs);
 };
 
 #endif

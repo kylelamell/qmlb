@@ -36,3 +36,7 @@ std::string CNum::print() const {
 bool operator==(const CNum& lhs, const CNum& rhs) {
   return ((lhs.real == rhs.real) && (lhs.comp == rhs.comp));
 }
+
+bool operator!=(const CNum& lhs, const CNum& rhs) {
+  return ((lhs.real != rhs.real) || (lhs.comp != rhs.comp));
+}
