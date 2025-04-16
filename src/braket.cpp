@@ -1,24 +1,15 @@
 #include "braket.hpp"
 
-// BraKet definitions
-BraKetType BraKet::getType() {
-  return type;
-}
-
 // Bra definitions
-Bra::Bra(Matrix& s) : state(s) {
-  type = bra;
-}
+Bra::Bra(Matrix& s) : state(s) {}
 
-std::unique_ptr<BraKet> Bra::hermitianConjugate() {
-  return std::make_unique<Ket>(state.hermitianConjugate());
+Ket Bra::hermitianConjugate() {
+  return Ket(state.hermitianConjugate());
 }
 
 // Ket definitions
-Ket::Ket(Matrix& s) : state(s) {
-  type = ket;
-}
+Ket::Ket(Matrix& s) : state(s) {}
 
-std::unique_ptr<BraKet> Ket::hermitianConjugate() {
-  return std::make_unique<Bra>(state.hermitianConjugate());
+Bra Ket::hermitianConjugate() {
+  return Bra(state.hermitianConjugate());
 }

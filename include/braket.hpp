@@ -6,27 +6,20 @@
 
 enum BraKetType {bra, ket};
 
-class BraKet {
-protected:
-  BraKetType type;
-public:
-  virtual ~BraKet() {};
-  BraKetType getType();
-  virtual std::unique_ptr<BraKet> hermitianConjugate() = 0;
-};
-
-class Bra : public BraKet {
+class Bra {
 public:
   Matrix state;
   Bra(Matrix& s);
-  std::unique_ptr<BraKet> hermitianConjugate() override;
+
+  Ket hermitianConjugate();
 };
 
-class Ket : public BraKet {
+class Ket {
 public:
   Matrix state;
   Ket(Matrix& s);
-  std::unique_ptr<BraKet> hermitianConjugate() override;
+
+  Bra hermitianConjugate();
 };
 
 #endif
