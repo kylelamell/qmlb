@@ -2,6 +2,8 @@
 #include <iostream>
 #include <iomanip>
 
+// everything returns true at the moment so that I can test functionality
+
 struct test_case {
   bool (*test_ptr)();
   std::string test_name;
