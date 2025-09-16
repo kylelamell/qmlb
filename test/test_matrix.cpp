@@ -1,5 +1,11 @@
 #include "matrix.hpp"
 #include <iostream>
+#include <iomanip>
+
+struct test_case {
+  bool (*test_ptr)();
+  std::string test_name;
+};
 
 // Matrix add(const Matrix& m2) const
 bool add_normal() {
@@ -44,7 +50,7 @@ bool sub_wrong_dimension() {
 }
 
 // Matrix scalarMultiply(const CNum& cn2) const
-bool multiply_zero_scalar() {
+bool multiply_scalar_zero() {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   matrix m2 = {{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}};
   Matrix M1(m1);
@@ -103,8 +109,30 @@ bool multiply_scalar_complex() {
 
 // main
 int main() {
+  // define all the tests
+  std::vector<test_case> tests = {
+    {add_normal, "Add Normal"},
+    {add_wrong_dimension, "Add Wrong Dimension"},
+    {sub_normal, "Subtract Normal"},
+    {sub_wrong_dimension, "Subtract Wrong Dimension"},
+    {multiply_scalar_zero, "Mutiply Scalar Zero"},
+    {multiply_scalar_real, "Mutiply Scalar Real"},
+    {multiply_scalar_imaginary, "Multiply Scalar Imaginary"},
+    {multiply_scalar_complex, "Multiply Scalar Complex"}
+  };
+
+  int totalPassed = 0;
   std::cout << "test_matrix: START" << std::endl;
-  
+
+  for (auto test : tests) {
+    bool passed = test.test_ptr();
+    if (passed) ++totalPassed;
+    std::cout << test.test_name <<": " << ((passed) ? "Passed" : "Failed") << std::endl;
+  }
+
+  std::cout << "Test Cases Passed: " << totalPassed << " / " << tests.size();
+  std::cout << "(" << std::fixed << std::setprecision(2);
+  std::cout << (static_cast<double>(totalPassed)/tests.size()) * 100.0 << "%)" << std::endl;
 
   std::cout << "test_matrix: END" << std::endl;
 }
