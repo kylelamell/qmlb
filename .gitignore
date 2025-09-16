@@ -1,8 +1,2 @@
-# Ignore main.cpp
-main.cpp
-
-# Ignore .vscode folder
 .vscode/
-
-# Ignore build folder
 build/

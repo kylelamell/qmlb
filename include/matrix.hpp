@@ -15,22 +15,22 @@ public:
 
   Matrix(matrix& m);
 
-  Matrix add(const Matrix& m2) const;
-  Matrix subtract(const Matrix& m2) const;
+  Matrix add(Matrix& m2);
+  Matrix subtract(Matrix& m2);
 
-  Matrix scalarMultiply(const CNum& cn2) const;
-  Matrix matrixMultiply(const Matrix& m2) const;
+  Matrix scalarMultiply(CNum& cn2);
+  Matrix matrixMultiply(Matrix& m2);
   
-  Matrix tensorProduct(const Matrix& m2) const;
+  Matrix tensorProduct(Matrix& m2);
 
-  Matrix transpose() const;
-  Matrix complexConjugate() const;
-  Matrix hermitianConjugate() const;
+  Matrix transpose();
+  Matrix complexConjugate();
+  Matrix hermitianConjugate();
 
-  void print() const;
+  void print();
 
-  friend bool operator==(const Matrix& lhs, const Matrix& rhs);
-  friend bool operator!=(const Matrix& lhs, const Matrix& rhs);
+  friend bool operator==(Matrix& lhs, Matrix& rhs);
+  friend bool operator!=(Matrix& lhs, Matrix& rhs);
 };
 
 #endif

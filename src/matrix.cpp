@@ -7,7 +7,7 @@ Matrix::Matrix() {}
 
 Matrix::Matrix(matrix& mat2) : mat(mat2) {}
 
-Matrix Matrix::add(const Matrix& m2) const {
+Matrix Matrix::add(Matrix& m2) {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
     throw std::runtime_error("Matrix->add: Matrix dimensions do not match.");
   }
@@ -23,7 +23,7 @@ Matrix Matrix::add(const Matrix& m2) const {
   return Matrix(result);
 }
 
-Matrix Matrix::subtract(const Matrix& m2) const {
+Matrix Matrix::subtract(Matrix& m2) {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
     throw std::runtime_error("Matrix->sub: Matrix dimensions do not match.");
   }
@@ -39,7 +39,7 @@ Matrix Matrix::subtract(const Matrix& m2) const {
   return Matrix(result);
 }
 
-Matrix Matrix::scalarMultiply(const CNum& cn2) const {
+Matrix Matrix::scalarMultiply(CNum& cn2) {
   matrix result = mat;
 
   for (rowVector& vec : result) {
@@ -51,7 +51,7 @@ Matrix Matrix::scalarMultiply(const CNum& cn2) const {
   return result;
 }
 
-Matrix Matrix::matrixMultiply(const Matrix& m2) const {
+Matrix Matrix::matrixMultiply(Matrix& m2) {
   if (mat[0].size() != m2.mat.size()) {
     throw std::runtime_error("Matrix->mult: Inner matrix dimentions do not match.");
   }
@@ -72,7 +72,7 @@ Matrix Matrix::matrixMultiply(const Matrix& m2) const {
   return Matrix(result);
 }
 
-Matrix Matrix::tensorProduct(const Matrix& m2) const {
+Matrix Matrix::tensorProduct(Matrix& m2) {
   matrix result(mat.size() * m2.mat.size(), rowVector(mat[0].size() * m2.mat[0].size()));
 
   // loop over left matrix
@@ -91,19 +91,19 @@ Matrix Matrix::tensorProduct(const Matrix& m2) const {
   return result;
 }
 
-Matrix Matrix::complexConjugate() const {
-  matrix result = mat;
+Matrix Matrix::complexConjugate() {
+  matrix result(mat.size(), rowVector(mat[0].size()));
 
-  for (rowVector& vec : result) {
-    for (CNum& cn : vec) {
-      cn = cn.complexConjugate();
+  for (int i = 0; i < mat.size(); i++) {
+    for (int j = 0; j < mat[0].size(); j++) {
+      result[i][j] = mat[i][j].complexConjugate();
     }
   }
 
   return Matrix(result);
 }
 
-Matrix Matrix::transpose() const {
+Matrix Matrix::transpose() {
   matrix result(mat[0].size(), rowVector(mat.size()));
 
   for (int i = 0; i < mat.size(); i++) {
@@ -115,11 +115,11 @@ Matrix Matrix::transpose() const {
   return Matrix(result);
 }
 
-Matrix Matrix::hermitianConjugate() const {
+Matrix Matrix::hermitianConjugate() {
   return this->transpose().complexConjugate();
 }
 
-void Matrix::print() const {
+void Matrix::print() {
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[i].size(); j++) {
       std::cout << mat[i][j].print() << " ";
@@ -128,7 +128,7 @@ void Matrix::print() const {
   }
 }
 
-bool operator==(const Matrix& lhs, const Matrix& rhs) {
+bool operator==(Matrix& lhs, Matrix& rhs) {
   if (lhs.mat.size() != rhs.mat.size() || lhs.mat[0].size() != rhs.mat[0].size()) {
     return false;
   }
@@ -144,7 +144,7 @@ bool operator==(const Matrix& lhs, const Matrix& rhs) {
   return true;
 }
 
-bool operator!=(const Matrix& lhs, const Matrix& rhs) {
+bool operator!=(Matrix& lhs, Matrix& rhs) {
   if (lhs.mat.size() != rhs.mat.size() || lhs.mat[0].size() != rhs.mat[0].size()) {
     return true;
   }

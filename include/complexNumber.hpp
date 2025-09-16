@@ -11,17 +11,17 @@ public:
   CNum();
   CNum(int r, int c);
 
-  CNum add(const CNum& cn2) const;
-  CNum subtract(const CNum& cn2) const;
-  CNum multiply(const CNum& cn2) const;
+  CNum add(CNum& cn2);
+  CNum subtract(CNum& cn2);
+  CNum multiply(CNum& cn2);
 
-  CNum complexConjugate() const;
-  double magnitude() const;
+  CNum complexConjugate();
+  double magnitude();
 
-  std::string print() const;
+  std::string print();
 
-  friend bool operator==(const CNum& lhs, const CNum& rhs);
-  friend bool operator!=(const CNum& lhs, const CNum& rhs);
+  friend bool operator==(CNum& lhs, CNum& rhs);
+  friend bool operator!=(CNum& lhs, CNum& rhs);
 };
 
 #endif
