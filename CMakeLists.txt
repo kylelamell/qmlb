@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(include)
 
 set(qmlb
-  src/braket.cpp
   src.complexNUmber.cpp
   src/equation.cpp
   src/matrix.cpp
