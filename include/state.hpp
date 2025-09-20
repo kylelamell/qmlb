@@ -8,20 +8,13 @@
 enum BraKet {Bra, Ket};
 
 class State {
-private:
-  BraKet braket;
-
 public:
   Matrix state;
+  BraKet braket;
 
   State(Matrix& s);
 
-  State hermitianConjugate();
-
-  void setBra();
-  void setKet();
-
-  BraKet getBraKet();
+  void hermitianConjugate();
 };
 
 #endif
