@@ -8,7 +8,6 @@ include_directories(include)
 
 set(qmlb
   src.complexNUmber.cpp
-  src/equation.cpp
   src/matrix.cpp
   src/state.cpp
 )
