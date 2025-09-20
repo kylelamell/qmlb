@@ -53,7 +53,7 @@ Matrix Matrix::scalarMultiply(CNum& cn2) {
 
 Matrix Matrix::matrixMultiply(Matrix& m2) {
   if (mat[0].size() != m2.mat.size()) {
-    throw std::runtime_error("Matrix->mult: Inner matrix dimentions do not match.");
+    throw std::runtime_error("Matrix->mult: Inner matrix dimensions do not match.");
   }
 
   matrix result(mat.size(), rowVector(m2.mat[0].size()));
