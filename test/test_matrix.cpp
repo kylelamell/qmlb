@@ -1,42 +1,12 @@
 #include "matrix.hpp"
-#include <iostream>
 #include <iomanip>
+#include <iostream>
+#include <vector>
 
-const struct test_case {
+struct test_case {
   bool (*test_ptr)();
   std::string test_name;
 };
-
-// everything returns true at the moment so that I can test functionality
-int main() {
-  int totalPassed = 0;
-
-  // define all the tests
-  const std::vector<const test_case> tests = {
-    {add_normal, "Add Normal"},
-    {add_wrong_dimension, "Add Wrong Dimension"},
-    {sub_normal, "Subtract Normal"},
-    {sub_wrong_dimension, "Subtract Wrong Dimension"},
-    {multiply_scalar_zero, "Mutiply Scalar Zero"},
-    {multiply_scalar_real, "Mutiply Scalar Real"},
-    {multiply_scalar_imaginary, "Multiply Scalar Imaginary"},
-    {multiply_scalar_complex, "Multiply Scalar Complex"}
-  };
-
-  std::cout << "test_matrix: START" << std::endl;
-
-  for (const test_case test : tests) {
-    bool didPass = test.test_ptr();
-    if (didPass) ++totalPassed;
-    std::cout << test.test_name <<": " << ((didPass) ? "Passed" : "Failed") << std::endl;
-  }
-
-  std::cout << "Test Cases Passed: " << totalPassed << " / " << tests.size();
-  std::cout << "(" << std::fixed << std::setprecision(2);
-  std::cout << (static_cast<double>(totalPassed)/tests.size()) * 100.0 << "%)" << std::endl;
-
-  std::cout << "test_matrix: END" << std::endl;
-}
 
 // Matrix add(const Matrix& m2) const
 bool add_normal() {
@@ -130,3 +100,38 @@ bool multiply_scalar_complex() {
 
 
 // bool !=
+
+// everything returns true at the moment so that I can test functionality
+int main() {
+  int totalPassed = 0;
+
+  // define all the tests
+  const std::vector<test_case> tests = {
+    {add_normal, "Add Normal"},
+    {add_wrong_dimension, "Add Wrong Dimension"},
+    {sub_normal, "Subtract Normal"},
+    {sub_wrong_dimension, "Subtract Wrong Dimension"},
+    {multiply_scalar_zero, "Mutiply Scalar Zero"},
+    {multiply_scalar_real, "Mutiply Scalar Real"},
+    {multiply_scalar_imaginary, "Multiply Scalar Imaginary"},
+    {multiply_scalar_complex, "Multiply Scalar Complex"}
+  };
+
+  std::cout << "=======================================" << std::endl;
+  std::cout << "test_matrix: START" << std::endl;
+  std::cout << std::endl;
+
+  for (const test_case test : tests) {
+    bool didPass = test.test_ptr();
+    if (didPass) ++totalPassed;
+    std::cout << test.test_name <<": " << ((didPass) ? "Passed" : "Failed") << std::endl;
+  }
+
+  std::cout << "Test Cases Passed: " << totalPassed << "/" << tests.size() << " ";
+  std::cout << "(" << std::fixed << std::setprecision(2);
+  std::cout << (static_cast<double>(totalPassed)/tests.size()) * 100.0 << "%)" << std::endl;
+
+  std::cout << std::endl;
+  std::cout << "test_matrix: END" << std::endl;
+  std::cout << "=======================================" << std::endl;
+}

@@ -1,9 +1,39 @@
 #include "state.hpp"
+#include <iomanip>
 #include <iostream>
+#include <vector>
+
+struct test_case {
+  bool (*test_ptr)();
+  std::string test_name;
+};
+
+// add states
+bool add_normal() {};
 
 int main() {
-  std::cout << "test_state: START" << std::endl;
-  
+  int totalPassed = 0;
 
+  // define all the tests
+  const std::vector<test_case> tests = {
+    {add_normal, "Add Normal"}
+  };
+
+  std::cout << "=======================================" << std::endl;
+  std::cout << "test_state: START" << std::endl;
+  std::cout << std::endl;
+
+  for (const test_case test : tests) {
+    bool didPass = test.test_ptr();
+    if (didPass) ++totalPassed;
+    std::cout << test.test_name <<": " << ((didPass) ? "Passed" : "Failed") << std::endl;
+  }
+
+  std::cout << "Test Cases Passed: " << totalPassed << "/" << tests.size() << " ";
+  std::cout << "(" << std::fixed << std::setprecision(2);
+  std::cout << (static_cast<double>(totalPassed)/tests.size()) * 100.0 << "%)" << std::endl;
+
+  std::cout << std::endl;
   std::cout << "test_state: END" << std::endl;
+  std::cout << "=======================================" << std::endl;
 }
