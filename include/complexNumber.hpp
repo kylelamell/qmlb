@@ -6,7 +6,7 @@
 class CNum {
 public:
   int real;
-  int comp;
+  int imag;
 
   CNum();
   CNum(int r, int c);

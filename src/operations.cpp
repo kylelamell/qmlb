@@ -5,7 +5,7 @@
 
 // equals
 bool operator==(const CNum& cnum1, const CNum& cnum2) {
-  return ((cnum1.real == cnum2.real) && (cnum1.comp == cnum2.comp));
+  return ((cnum1.real == cnum2.real) && (cnum1.imag == cnum2.imag));
 }
 
 bool operator==(const Matrix& matrix1, const Matrix& matrix2) {
@@ -26,7 +26,7 @@ bool operator==(const Matrix& matrix1, const Matrix& matrix2) {
 
 // not equals
 bool operator!=(const CNum& cnum1, const CNum& cnum2) {
-  return ((cnum1.real != cnum2.real) || (cnum1.comp != cnum2.comp));
+  return ((cnum1.real != cnum2.real) || (cnum1.imag != cnum2.imag));
 }
 
 bool operator!=(const Matrix& matrix1, const Matrix& matrix2) {
@@ -48,7 +48,7 @@ bool operator!=(const Matrix& matrix1, const Matrix& matrix2) {
 
 // addition
 CNum operator+(const CNum& cnum1, const CNum& cnum2) {
-  return CNum(cnum1.real + cnum2.real, cnum1.comp + cnum2.comp);
+  return CNum(cnum1.real + cnum2.real, cnum1.imag + cnum2.imag);
 }
 
 Matrix operator+(const Matrix& matrix1, const Matrix& matrix2) {
@@ -69,7 +69,7 @@ Matrix operator+(const Matrix& matrix1, const Matrix& matrix2) {
 
 // subtraction
 CNum operator-(const CNum& cnum1, const CNum& cnum2) {
-  return CNum(cnum1.real - cnum2.real, cnum1.comp - cnum2.comp);
+  return CNum(cnum1.real - cnum2.real, cnum1.imag - cnum2.imag);
 }
 
 Matrix operator-(const Matrix& matrix1, const Matrix& matrix2) {
@@ -90,8 +90,8 @@ Matrix operator-(const Matrix& matrix1, const Matrix& matrix2) {
 
 // multiplication
 CNum operator*(const CNum& cnum1, const CNum& cnum2) {
-  return CNum((cnum1.real * cnum2.real) - (cnum1.comp * cnum2.comp), 
-              (cnum1.real * cnum2.comp) + (cnum1.comp * cnum2.real));
+  return CNum((cnum1.real * cnum2.real) - (cnum1.imag * cnum2.imag), 
+              (cnum1.real * cnum2.imag) + (cnum1.imag * cnum2.real));
 }
 
 Matrix operator*(const Matrix& matrix1, const Matrix& matrix2) {
