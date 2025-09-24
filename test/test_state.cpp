@@ -9,7 +9,9 @@ struct test_case {
 };
 
 // add states
-bool add_normal() {};
+bool add_normal() {
+  return true;
+};
 
 int main() {
   int totalPassed = 0;
