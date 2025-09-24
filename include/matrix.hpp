@@ -19,13 +19,7 @@ public:
   Matrix(Matrix&& other) noexcept;
   Matrix& operator=(const Matrix& other);
   Matrix& operator=(Matrix&& other) noexcept;
-
-  Matrix add(Matrix& m2);
-  Matrix subtract(Matrix& m2);
-
-  Matrix scalarMultiply(CNum& cn2);
-  Matrix matrixMultiply(Matrix& m2);
-  
+ 
   Matrix tensorProduct(Matrix& m2);
 
   Matrix transpose();
@@ -34,8 +28,12 @@ public:
 
   void print();
 
-  friend bool operator==(Matrix& lhs, Matrix& rhs);
-  friend bool operator!=(Matrix& lhs, Matrix& rhs);
+  Matrix operator+(const Matrix& other);
+  Matrix operator-(const Matrix& other);
+  Matrix operator*(const CNum& scalar);
+  Matrix operator*(const Matrix& other);
+  bool operator==(const Matrix& other);
+  bool operator!=(const Matrix& other);
 };
 
 #endif
