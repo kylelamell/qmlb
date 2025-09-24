@@ -8,7 +8,6 @@ struct test_case {
   std::string test_name;
 };
 
-// Matrix add(const Matrix& m2) const
 bool add_normal() {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   matrix m2 = {{CNum(4,4), CNum(3,3)},{CNum(2,2), CNum(1,1)}};
@@ -28,7 +27,6 @@ bool add_wrong_dimension() {
   return true;
 }
 
-// Matrix subtract(const Matrix& m2) const
 bool sub_normal() {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   matrix m2 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
@@ -48,7 +46,6 @@ bool sub_wrong_dimension() {
   return true;
 }
 
-// Matrix scalarMultiply(const CNum& cn2) const
 bool multiply_scalar_zero() {
   matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
   matrix m2 = {{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}};
