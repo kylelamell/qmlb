@@ -24,7 +24,7 @@ public:
   CNum complexConjugate();
   double magnitude();
 
-  std::string print();
+  std::string toString();
 
   friend bool operator==(CNum& lhs, CNum& rhs);
   friend bool operator!=(CNum& lhs, CNum& rhs);

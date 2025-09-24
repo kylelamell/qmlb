@@ -6,11 +6,54 @@
 Matrix::Matrix() {}
 Matrix::Matrix(matrix& mat2) : mat(mat2) {}
 
+// destructor
 Matrix::~Matrix() {}
-Matrix::Matrix(const Matrix& other) {}
-Matrix::Matrix(Matrix&& other) noexcept {}
-Matrix& Matrix::operator=(const Matrix& other) {}
-Matrix& Matrix::operator=(Matrix&& other) noexcept {}
+
+// copy
+// Matrix::Matrix(const Matrix& other) : mat(other.mat) {}
+Matrix::Matrix(const Matrix& other) {
+  mat.resize(other.mat.size());
+  for (int i = 0; i < other.mat.size(); i++) {
+    mat[i].resize(other.mat[i].size());
+    for (int j = 0; j < other.mat[i].size(); j++) {
+      mat[i][j] = other.mat[i][j];
+    }
+  }
+}
+
+// copy assingment
+// Matrix& Matrix::operator=(const Matrix& other) {
+//   if (this != &other) {
+//     mat = other.mat;
+//   }
+//   return *this;
+// }
+Matrix& Matrix::operator=(const Matrix& other) {
+  if (this != &other) {
+    mat.resize(other.mat.size());
+    for (int i = 0; i < other.mat.size(); i++) {
+      mat[i].resize(other.mat[i].size());
+      for (int j = 0; j < other.mat[i].size(); j++) {
+        mat[i][j] = other.mat[i][j];
+      }
+    }
+  }
+  return *this;
+}
+
+// move
+Matrix::Matrix(Matrix&& other) noexcept : mat(std::move(other.mat)) {
+  // TODO: find a way to do without vector move
+}
+
+// move assignment
+Matrix& Matrix::operator=(Matrix&& other) noexcept {
+  if (this != &other) {
+    // TODO: find a way to do without vector move
+    mat = std::move(other.mat);
+  }
+  return *this;
+}
 
 Matrix Matrix::add(Matrix& m2) {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {
@@ -127,7 +170,7 @@ Matrix Matrix::hermitianConjugate() {
 void Matrix::print() {
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[i].size(); j++) {
-      std::cout << mat[i][j].print() << " ";
+      std::cout << mat[i][j].toString() << " ";
     }
     std::cout << std::endl;
   }
