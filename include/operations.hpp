@@ -4,11 +4,13 @@
 class CNum;
 class Matrix;
 
-// boolean operations
+// equals
 bool operator==(const CNum& cnum1, const CNum& cnum2);
+bool operator==(const Matrix& matrix1, const Matrix& matrix2);
+
+// not equals
 bool operator!=(const CNum& cnum1, const CNum& cnum2);
 bool operator!=(const Matrix& matrix1, const Matrix& matrix2);
-bool operator==(const Matrix& matrix1, const Matrix& matrix2);
 
 // addition operations
 CNum operator+(const CNum& cnum1, const CNum& cnum2);
