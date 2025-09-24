@@ -20,7 +20,7 @@ public:
   Matrix& operator=(const Matrix& other);
   Matrix& operator=(Matrix&& other) noexcept;
  
-  Matrix tensorProduct(Matrix& other);
+  Matrix tensorProduct(const Matrix& other);
 
   Matrix transpose();
   Matrix complexConjugate();

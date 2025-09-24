@@ -55,7 +55,7 @@ Matrix& Matrix::operator=(Matrix&& other) noexcept {
   return *this;
 }
 
-Matrix Matrix::tensorProduct(Matrix& other) {
+Matrix Matrix::tensorProduct(const Matrix& other) {
   matrix result(mat.size() * other.mat.size(), rowVector(mat[0].size() * other.mat[0].size()));
 
   // loop over left matrix
