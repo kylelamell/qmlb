@@ -17,17 +17,16 @@ public:
   CNum& operator=(const CNum& other);
   CNum& operator=(CNum&& other) noexcept;
 
-  CNum add(CNum& cn2);
-  CNum subtract(CNum& cn2);
-  CNum multiply(CNum& cn2);
-
   CNum complexConjugate();
   double magnitude();
 
   std::string toString();
 
-  friend bool operator==(CNum& lhs, CNum& rhs);
-  friend bool operator!=(CNum& lhs, CNum& rhs);
+  CNum operator+(const CNum& other);
+  CNum operator-(const CNum& other);
+  CNum operator*(const CNum& other);
+  bool operator==(const CNum& other);
+  bool operator!=(const CNum& other);
 };
 
 #endif

@@ -37,18 +37,6 @@ CNum& CNum::operator=(CNum&& other) noexcept {
   return *this;
 }
 
-CNum CNum::add(CNum& cn2) {
-  return CNum(real + cn2.real, comp + cn2.comp);
-}
-
-CNum CNum::subtract(CNum& cn2) {
-  return CNum(real - cn2.real, comp - cn2.comp);
-}
-
-CNum CNum::multiply(CNum& cn2) {
-  return CNum((real * cn2.real) - (comp * cn2.comp), (real * cn2.comp) + (comp * cn2.real));
-}
-
 CNum CNum::complexConjugate() {
   return CNum(real, -comp);
 }
@@ -65,10 +53,22 @@ std::string CNum::toString() {
   return "[" + std::to_string(real) + std::to_string(comp) + "i]";  
 }
 
-bool operator==(CNum& lhs, CNum& rhs) {
-  return ((lhs.real == rhs.real) && (lhs.comp == rhs.comp));
+CNum CNum::operator+(const CNum& other) {
+  return CNum(real + other.real, comp + other.comp);
 }
 
-bool operator!=(CNum& lhs, CNum& rhs) {
-  return ((lhs.real != rhs.real) || (lhs.comp != rhs.comp));
+CNum CNum::operator-(const CNum& other) {
+  return CNum(real - other.real, comp - other.comp);
+}
+
+CNum CNum::operator*(const CNum& other) {
+  return CNum((real * other.real) - (comp * other.comp), (real * other.comp) + (comp * other.real));
+}
+
+bool CNum::operator==(const CNum& other) {
+  return ((real == other.real) && (comp == other.comp));
+}
+
+bool CNum::operator!=(const CNum& other) {
+  return ((real != other.real) || (comp != other.comp));
 }
