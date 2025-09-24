@@ -5,15 +5,15 @@
 
 #include <vector>
 
-using t_matrix = std::vector<std::vector<CNum>>;
-using t_rowVector = std::vector<CNum>;
+using matrix_t = std::vector<std::vector<CNum>>;
+using rowVector_t = std::vector<CNum>;
 
 class Matrix {
 public:
-  t_matrix mat;
+  matrix_t mat;
 
   Matrix();
-  Matrix(t_matrix mat);
+  Matrix(matrix_t mat);
 
   ~Matrix();
   Matrix(const Matrix& other);

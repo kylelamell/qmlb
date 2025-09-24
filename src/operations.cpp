@@ -56,7 +56,7 @@ Matrix operator+(const Matrix& matrix1, const Matrix& matrix2) {
     throw std::runtime_error("Matrix->add: Matrix dimensions do not match.");
   }
   
-  t_matrix result(matrix1.mat.size(), t_rowVector(matrix1.mat[0].size()));
+  matrix_t result(matrix1.mat.size(), rowVector_t(matrix1.mat[0].size()));
 
   for (int i = 0; i < matrix1.mat.size(); i++) {
     for (int j = 0; j < matrix1.mat[0].size(); j++) {
@@ -77,7 +77,7 @@ Matrix operator-(const Matrix& matrix1, const Matrix& matrix2) {
     throw std::runtime_error("Matrix->sub: Matrix dimensions do not match.");
   }
   
-  t_matrix result(matrix1.mat.size(), t_rowVector(matrix1.mat[0].size()));
+  matrix_t result(matrix1.mat.size(), rowVector_t(matrix1.mat[0].size()));
 
   for (int i = 0; i < matrix1.mat.size(); i++) {
     for (int j = 0; j < matrix2.mat[0].size(); j++) {
@@ -99,7 +99,7 @@ Matrix operator*(const Matrix& matrix1, const Matrix& matrix2) {
     throw std::runtime_error("Matrix->mult: Inner matrix dimensions do not match.");
   }
 
-  t_matrix result(matrix1.mat.size(), t_rowVector(matrix2.mat[0].size()));
+  matrix_t result(matrix1.mat.size(), rowVector_t(matrix2.mat[0].size()));
 
   #pragma omp parallel for collapse(2)
   for (int i = 0; i < matrix1.mat.size(); i++) {
@@ -116,9 +116,9 @@ Matrix operator*(const Matrix& matrix1, const Matrix& matrix2) {
 }
 
 Matrix operator*(const CNum& cnum, const Matrix& matrix) {
-  t_matrix result = matrix.mat;
+  matrix_t result = matrix.mat;
 
-  for (t_rowVector& rv : result) {
+  for (rowVector_t& rv : result) {
     for (CNum& cn : rv) {
       cn = cn * cnum;
     }
@@ -128,9 +128,9 @@ Matrix operator*(const CNum& cnum, const Matrix& matrix) {
 }
 
 Matrix operator*(const Matrix& matrix, const CNum& cnum) {
-  t_matrix result = matrix.mat;
+  matrix_t result = matrix.mat;
 
-  for (t_rowVector& rv : result) {
+  for (rowVector_t& rv : result) {
     for (CNum& cn : rv) {
       cn = cn * cnum;
     }

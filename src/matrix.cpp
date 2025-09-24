@@ -5,7 +5,7 @@
 #include <string>
 
 Matrix::Matrix() {}
-Matrix::Matrix(t_matrix mat) : mat(mat) {}
+Matrix::Matrix(matrix_t mat) : mat(mat) {}
 
 // destructor
 Matrix::~Matrix() {}
@@ -57,7 +57,7 @@ Matrix& Matrix::operator=(Matrix&& other) noexcept {
 }
 
 Matrix Matrix::tensorProduct(const Matrix& other) {
-  t_matrix result(mat.size() * other.mat.size(), t_rowVector(mat[0].size() * other.mat[0].size()));
+  matrix_t result(mat.size() * other.mat.size(), rowVector_t(mat[0].size() * other.mat[0].size()));
 
   // loop over left matrix
   #pragma omp parallel for collapse(4)
@@ -77,7 +77,7 @@ Matrix Matrix::tensorProduct(const Matrix& other) {
 }
 
 Matrix Matrix::complexConjugate() {
-  t_matrix result(mat.size(), t_rowVector(mat[0].size()));
+  matrix_t result(mat.size(), rowVector_t(mat[0].size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
@@ -89,7 +89,7 @@ Matrix Matrix::complexConjugate() {
 }
 
 Matrix Matrix::transpose() {
-  t_matrix result(mat[0].size(), t_rowVector(mat.size()));
+  matrix_t result(mat[0].size(), rowVector_t(mat.size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
