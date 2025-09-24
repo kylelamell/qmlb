@@ -12,15 +12,15 @@ bool operator==(const Matrix& matrix1, const Matrix& matrix2);
 bool operator!=(const CNum& cnum1, const CNum& cnum2);
 bool operator!=(const Matrix& matrix1, const Matrix& matrix2);
 
-// addition operations
+// addition
 CNum operator+(const CNum& cnum1, const CNum& cnum2);
 Matrix operator+(const Matrix& matrix1, const Matrix& matrix2);
 
-// subtraction operations
+// subtraction
 CNum operator-(const CNum& cnum1, const CNum& cnum2);
 Matrix operator-(const Matrix& matrix1, const Matrix& matrix2);
 
-// multiplication operations
+// multiplication
 CNum operator*(const CNum& cnum1, const CNum& cnum2);
 Matrix operator*(const Matrix& matrix1, const Matrix& matrix2);
 Matrix operator*(const CNum& cnum, const Matrix& matrix);
