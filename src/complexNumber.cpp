@@ -1,4 +1,6 @@
 #include "complexNumber.hpp"
+#include "operations.hpp"
+
 #include <cmath>
 
 CNum::CNum() : real(0), comp(0) {};
@@ -38,11 +40,11 @@ CNum& CNum::operator=(CNum&& other) noexcept {
 }
 
 CNum CNum::complexConjugate() {
-  return CNum(real, -comp);
+  return CNum(real,-comp);
 }
 
 double CNum::magnitude() {
-  return std::sqrt(real * real + comp * comp);
+  return std::sqrt((real * real) + (comp * comp));
 }
 
 std::string CNum::toString() {
@@ -51,24 +53,4 @@ std::string CNum::toString() {
   }
 
   return "[" + std::to_string(real) + std::to_string(comp) + "i]";  
-}
-
-CNum CNum::operator+(const CNum& other) {
-  return CNum(real + other.real, comp + other.comp);
-}
-
-CNum CNum::operator-(const CNum& other) {
-  return CNum(real - other.real, comp - other.comp);
-}
-
-CNum CNum::operator*(const CNum& other) {
-  return CNum((real * other.real) - (comp * other.comp), (real * other.comp) + (comp * other.real));
-}
-
-bool CNum::operator==(const CNum& other) {
-  return ((real == other.real) && (comp == other.comp));
-}
-
-bool CNum::operator!=(const CNum& other) {
-  return ((real != other.real) || (comp != other.comp));
 }

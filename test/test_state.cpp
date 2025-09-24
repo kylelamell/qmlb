@@ -1,4 +1,6 @@
+#include "operations.hpp"
 #include "state.hpp"
+
 #include <iomanip>
 #include <iostream>
 #include <vector>

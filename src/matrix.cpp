@@ -1,10 +1,11 @@
 #include "matrix.hpp"
+#include "operations.hpp"
+
 #include <iostream>
 #include <string>
-#include <stdexcept>
 
 Matrix::Matrix() {}
-Matrix::Matrix(matrix mat) : mat(mat) {}
+Matrix::Matrix(t_matrix mat) : mat(mat) {}
 
 // destructor
 Matrix::~Matrix() {}
@@ -56,7 +57,7 @@ Matrix& Matrix::operator=(Matrix&& other) noexcept {
 }
 
 Matrix Matrix::tensorProduct(const Matrix& other) {
-  matrix result(mat.size() * other.mat.size(), rowVector(mat[0].size() * other.mat[0].size()));
+  t_matrix result(mat.size() * other.mat.size(), t_rowVector(mat[0].size() * other.mat[0].size()));
 
   // loop over left matrix
   #pragma omp parallel for collapse(4)
@@ -76,7 +77,7 @@ Matrix Matrix::tensorProduct(const Matrix& other) {
 }
 
 Matrix Matrix::complexConjugate() {
-  matrix result(mat.size(), rowVector(mat[0].size()));
+  t_matrix result(mat.size(), t_rowVector(mat[0].size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
@@ -88,7 +89,7 @@ Matrix Matrix::complexConjugate() {
 }
 
 Matrix Matrix::transpose() {
-  matrix result(mat[0].size(), rowVector(mat.size()));
+  t_matrix result(mat[0].size(), t_rowVector(mat.size()));
 
   for (int i = 0; i < mat.size(); i++) {
     for (int j = 0; j < mat[0].size(); j++) {
@@ -110,101 +111,4 @@ void Matrix::print() {
     }
     std::cout << std::endl;
   }
-}
-
-Matrix Matrix::operator+(const Matrix& other) {
-  if (mat.size() != other.mat.size() || mat[0].size() != other.mat[0].size()) {
-    throw std::runtime_error("Matrix->add: Matrix dimensions do not match.");
-  }
-  
-  matrix result(mat.size(), rowVector(mat[0].size()));
-
-  for (int i = 0; i < mat.size(); i++) {
-    for (int j = 0; j < mat[0].size(); j++) {
-      result[i][j] = mat[i][j] + other.mat[i][j];
-    }
-  }
-
-  return Matrix(result);
-}
-
-Matrix Matrix::operator-(const Matrix& other) {
-  if (mat.size() != other.mat.size() || mat[0].size() != other.mat[0].size()) {
-    throw std::runtime_error("Matrix->sub: Matrix dimensions do not match.");
-  }
-  
-  matrix result(mat.size(), rowVector(mat[0].size()));
-
-  for (int i = 0; i < mat.size(); i++) {
-    for (int j = 0; j < mat[0].size(); j++) {
-      result[i][j] = mat[i][j] - other.mat[i][j];
-    }
-  }
-
-  return Matrix(result);
-}
-
-Matrix Matrix::operator*(const CNum& scalar) {
-  matrix result = mat;
-
-  for (rowVector& vec : result) {
-    for (CNum& cn : vec) {
-      cn = cn * scalar;
-    }
-  }
-
-  return result;
-}
-
-Matrix Matrix::operator*(const Matrix& other) {
-  if (mat[0].size() != other.mat.size()) {
-    throw std::runtime_error("Matrix->mult: Inner matrix dimensions do not match.");
-  }
-
-  matrix result(mat.size(), rowVector(other.mat[0].size()));
-
-  #pragma omp parallel for collapse(2)
-  for (int i = 0; i < mat.size(); i++) {
-    for (int j = 0; j < other.mat[0].size(); j++) {
-      CNum sum;
-      for (int k = 0; k < mat[0].size(); k++) {
-        sum = sum + (mat[i][k] * other.mat[k][j]);
-      }
-      result[i][j] = sum;
-    }
-  }
-
-  return Matrix(result);
-}
-
-bool Matrix::operator==(const Matrix& other) {
-  if (mat.size() != other.mat.size() || mat[0].size() != other.mat[0].size()) {
-    return false;
-  }
-
-  for (int i = 0; i < other.mat.size(); i++) {
-    for (int j = 0; j < other.mat[0].size(); j++) {
-      if (mat[i][j] != other.mat[i][j]) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-bool Matrix::operator!=(const Matrix& other) {
-  if (mat.size() != other.mat.size() || mat[0].size() != other.mat[0].size()) {
-    return true;
-  }
-
-  for (int i = 0; i < mat.size(); i++) {
-    for (int j = 0; j < mat[0].size(); j++) {
-      if (mat[i][j] != other.mat[i][j]) {
-        return true;
-      }
-    }
-  }
-
-  return false;
 }

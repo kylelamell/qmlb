@@ -2,8 +2,6 @@
 #define STATE_H
 
 #include "matrix.hpp"
-#include <memory>
-#include <string>
 
 enum BraKet {Bra, Ket};
 

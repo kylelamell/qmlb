@@ -1,4 +1,6 @@
+#include "operations.hpp"
 #include "complexNumber.hpp"
+
 #include <iomanip>
 #include <iostream>
 #include <vector>

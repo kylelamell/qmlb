@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(include)
 
 set(qmlb_src
+  src/operations.cpp
   src/complexNumber.cpp
   src/matrix.cpp
   src/state.cpp

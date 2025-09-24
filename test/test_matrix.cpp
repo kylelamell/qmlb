@@ -1,4 +1,6 @@
+#include "operations.hpp"
 #include "matrix.hpp"
+
 #include <iomanip>
 #include <iostream>
 #include <stdexcept>
@@ -65,7 +67,7 @@ bool multiply_scalar_zero() {
   Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
   Matrix Expected({{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}});
 
-  return (M1*CNum(0,0)) == Expected;
+  return (M1 * CNum(0,0)) == Expected;
 }
 
 bool multiply_scalar_real() {

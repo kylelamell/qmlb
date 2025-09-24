@@ -21,12 +21,6 @@ public:
   double magnitude();
 
   std::string toString();
-
-  CNum operator+(const CNum& other);
-  CNum operator-(const CNum& other);
-  CNum operator*(const CNum& other);
-  bool operator==(const CNum& other);
-  bool operator!=(const CNum& other);
 };
 
 #endif

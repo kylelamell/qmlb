@@ -2,17 +2,18 @@
 #define MATRIX_H
 
 #include "complexNumber.hpp"
+
 #include <vector>
 
-using matrix = std::vector<std::vector<CNum>>;
-using rowVector = std::vector<CNum>;
+using t_matrix = std::vector<std::vector<CNum>>;
+using t_rowVector = std::vector<CNum>;
 
 class Matrix {
 public:
-  matrix mat;
+  t_matrix mat;
 
   Matrix();
-  Matrix(matrix m);
+  Matrix(t_matrix mat);
 
   ~Matrix();
   Matrix(const Matrix& other);
@@ -27,13 +28,6 @@ public:
   Matrix hermitianConjugate();
 
   void print();
-
-  Matrix operator+(const Matrix& other);
-  Matrix operator-(const Matrix& other);
-  Matrix operator*(const CNum& scalar);
-  Matrix operator*(const Matrix& other);
-  bool operator==(const Matrix& other);
-  bool operator!=(const Matrix& other);
 };
 
 #endif
