@@ -1,6 +1,7 @@
 #include "matrix.hpp"
 #include <iomanip>
 #include <iostream>
+#include <stdexcept>
 #include <vector>
 
 struct test_case {
@@ -8,95 +9,105 @@ struct test_case {
   std::string test_name;
 };
 
-bool add_normal() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(4,4), CNum(3,3)},{CNum(2,2), CNum(1,1)}};
-  matrix m3 = {{CNum(5,5), CNum(5,5)},{CNum(5,5), CNum(5,5)}};
-  Matrix M1(m1);
-  Matrix M2(m2);
-
+// TODO: bool ==
+bool equals() {
   return true;
+}
+
+// TODO: bool !=
+bool not_equals() {
+  return true;
+}
+
+bool add_normal() {
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix M2({{CNum(4,4), CNum(3,3)},{CNum(2,2), CNum(1,1)}});
+  Matrix Expected({{CNum(5,5), CNum(5,5)},{CNum(5,5), CNum(5,5)}});
+
+  return (M1 + M2) == Expected;
 }
 
 bool add_wrong_dimension() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(1,1)},{CNum(2,2)}};
-  Matrix M1(m1);
-  Matrix M2(m2);
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix M2({{CNum(1,1)},{CNum(2,2)}});
 
-  return true;
+  try {
+    Matrix M3 = M1 + M2;
+    return false;
+  }
+  catch (const std::runtime_error& e) {
+    return true;
+  }
 }
 
 bool sub_normal() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m3 = {{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}};
-  Matrix M1(m1);
-  Matrix M2(m2);
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix M2({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix Expected({{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}});
 
-  return true;
+  return (M1 - M2) == Expected;
 }
 
 bool sub_wrong_dimension() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(1,1)},{CNum(2,2)}};
-  Matrix M1(m1);
-  Matrix M2(m2);
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix M2({{CNum(1,1)},{CNum(2,2)}});
 
-  return true;
+  try {
+    M1 - M2;
+    return false;
+  }
+  catch (const std::runtime_error& e) {
+    return true;
+  }
 }
 
 bool multiply_scalar_zero() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}};
-  Matrix M1(m1);
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix Expected({{CNum(0,0), CNum(0,0)},{CNum(0,0), CNum(0,0)}});
 
-  return true;
+  return (M1*CNum(0,0)) == Expected;
 }
 
 bool multiply_scalar_real() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(2,2), CNum(4,4)},{CNum(6,6), CNum(8,8)}};
-  Matrix M1(m1);
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix Expected({{CNum(2,2), CNum(4,4)},{CNum(6,6), CNum(8,8)}});
 
-  return true;
+  return (M1 * CNum(2,0)) == Expected;
 }
 
 bool multiply_scalar_imaginary() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(-2,2), CNum(-4,4)},{CNum(-6,6), CNum(-8,8)}};
-  Matrix M1(m1);
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix Expected({{CNum(-2,2), CNum(-4,4)},{CNum(-6,6), CNum(-8,8)}});
 
-  return true;
+  return (M1 * CNum(0,2)) == Expected;
 }
 
 bool multiply_scalar_complex() {
-  matrix m1 = {{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}};
-  matrix m2 = {{CNum(0,4), CNum(0,8)},{CNum(0,12), CNum(0,16)}};
-  Matrix M1(m1);
+  Matrix M1({{CNum(1,1), CNum(2,2)},{CNum(3,3), CNum(4,4)}});
+  Matrix Expected({{CNum(0,4), CNum(0,8)},{CNum(0,12), CNum(0,16)}});
 
-  return true;
+  return (M1 * CNum(2,2)) == Expected;
 }
 
-// Matrix matrixMultiply(const Matrix& m2) const
+bool multiply_matrix() {
+  Matrix M1({{CNum(1,1), CNum(2,0)},{CNum(0,3), CNum(4,-1)}});
+  Matrix M2({{CNum(5,0), CNum(6,-1)},{CNum(0,-7), CNum(8,0)}});
+  Matrix Expected({{CNum(5,-9), CNum(23,5)},{CNum(-7,-13), CNum(35,10)}});
+
+  return (M1 * M2) == Expected;
+}
+
+// TODO: Matrix tensorProduct(const Matrix& m2)
 
 
-// Matrix tensorProduct(const Matrix& m2) const
+// TODO: Matrix complexConjugate() const
 
 
-// Matrix complexConjugate() const
+// TODO: Matrix transpose() const
 
 
-// Matrix transpose() const
+// TODO: Matrix hermitianConjugate() const
 
-
-// Matrix hermitianConjugate() const
-
-
-// bool ==
-
-
-// bool !=
 
 // everything returns true at the moment so that I can test functionality
 int main() {

@@ -1,10 +1,10 @@
 #include "matrix.hpp"
+#include <iostream>
 #include <string>
 #include <stdexcept>
-#include <iostream>
 
 Matrix::Matrix() {}
-Matrix::Matrix(matrix& mat2) : mat(mat2) {}
+Matrix::Matrix(matrix mat) : mat(mat) {}
 
 // destructor
 Matrix::~Matrix() {}

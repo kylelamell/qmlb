@@ -12,7 +12,7 @@ public:
   matrix mat;
 
   Matrix();
-  Matrix(matrix& m);
+  Matrix(matrix m);
 
   ~Matrix();
   Matrix(const Matrix& other);
