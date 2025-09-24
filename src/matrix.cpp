@@ -4,8 +4,13 @@
 #include <iostream>
 
 Matrix::Matrix() {}
-
 Matrix::Matrix(matrix& mat2) : mat(mat2) {}
+
+Matrix::~Matrix() {}
+Matrix::Matrix(const Matrix& other) {}
+Matrix::Matrix(Matrix&& other) noexcept {}
+Matrix& Matrix::operator=(const Matrix& other) {}
+Matrix& Matrix::operator=(Matrix&& other) noexcept {}
 
 Matrix Matrix::add(Matrix& m2) {
   if (mat.size() != m2.mat.size() || mat[0].size() != m2.mat[0].size()) {

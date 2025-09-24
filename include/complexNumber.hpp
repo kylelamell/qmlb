@@ -11,6 +11,12 @@ public:
   CNum();
   CNum(int r, int c);
 
+  ~CNum();
+  CNum(const CNum& other);
+  CNum(CNum&& other) noexcept;
+  CNum& operator=(const CNum& other);
+  CNum& operator=(CNum&& other) noexcept;
+
   CNum add(CNum& cn2);
   CNum subtract(CNum& cn2);
   CNum multiply(CNum& cn2);

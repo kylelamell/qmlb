@@ -12,8 +12,13 @@ public:
   matrix mat;
 
   Matrix();
-
   Matrix(matrix& m);
+
+  ~Matrix();
+  Matrix(const Matrix& other);
+  Matrix(Matrix&& other) noexcept;
+  Matrix& operator=(const Matrix& other);
+  Matrix& operator=(Matrix&& other) noexcept;
 
   Matrix add(Matrix& m2);
   Matrix subtract(Matrix& m2);

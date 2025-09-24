@@ -2,8 +2,13 @@
 #include <cmath>
 
 CNum::CNum() : real(0), comp(0) {};
-
 CNum::CNum(int r, int c) : real(r), comp(c) {};
+
+CNum::~CNum() {}
+CNum::CNum(const CNum& other) {}
+CNum::CNum(CNum&& other) noexcept {}
+CNum& CNum::operator=(const CNum& other) {}
+CNum& CNum::operator=(CNum&& other) noexcept {}
 
 CNum CNum::add(CNum& cn2) {
   return CNum(real + cn2.real, comp + cn2.comp);
