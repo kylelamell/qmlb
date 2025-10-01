@@ -2,6 +2,9 @@ Quantum Mechanics Library
 
 Kyle Lamell
 
+9/30/25
+Working on operations
+
 9/24/25
 Basic math stuff nearing completion.
 
